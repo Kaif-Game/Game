@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//ЕБАТЬ ЧТО Я ТУТ ДЕЛАЮ
+
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rigidbody;
