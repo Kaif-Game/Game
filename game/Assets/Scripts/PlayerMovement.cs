@@ -7,7 +7,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rigidbody;
-    [SerializeField] private float jumpForce = 7f;  
+    [SerializeField] private float jumpForce = 7f;
+    [SerializeField] private float speed;
 
     void Start()
     {
@@ -17,9 +18,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
         if (Input.GetKeyDown("space"))
         {
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
+        }
+        if (Input.GetKeyDown("left"))
+        {
+            rigidbody.velocity = new Vector2(-2, rigidbody.velocity.y);
+        }
+        if (Input.GetKeyDown("right"))
+        {
+            rigidbody.velocity = new Vector2(2, rigidbody.velocity.y);
         }
     }
 }
