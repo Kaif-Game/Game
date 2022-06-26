@@ -8,10 +8,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private float speed;
 
-    //[SerializeField] private float deltaAngle = 0f;
-    //private float angle = 0;
-    //[SerializeField] private float roundDiff = 15f; 
-
     bool isSpacePressed = false; 
 
     [SerializeField] private LayerMask jumpableGround;
@@ -40,16 +36,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isSpacePressed = false;
         }
-
-        //rotation in air
-        /*if (!isOnGround)
-        {
-            Debug.Log(Time.deltaTime);
-            angle += deltaAngle * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(Vector3.forward * angle);
-            //transform.Rotate(Vector3.forward * deltaAngle);
-        }
-        */
     }
 
 
@@ -60,33 +46,11 @@ public class PlayerMovement : MonoBehaviour
             isOnGround = true;
             rigidbody.velocity = Vector2.down;
         }
-        if(collision.gameObject.CompareTag("Jumper"))
+        if (collision.gameObject.CompareTag("Jumper"))
         {
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce * 2);
         }
     }
-
-    /*
-    private void RoundAngle()
-    {
-        if(angle > -360 - roundDiff && angle < -roundDiff)
-        {
-            angle = 0;
-        }
-        else if (angle > -90 - roundDiff && angle < -90 + roundDiff)
-        {
-            angle = -90;
-        }
-        else if(angle > - 180 - roundDiff && angle < -180 + roundDiff)
-        {
-            angle = -180;
-        }
-        else if(angle > -270 - roundDiff && angle < -270 + roundDiff)
-        {
-            angle = -270;
-        }
-    }
-    */
 
     private void OnCollisionExit2D(Collision2D collision)
     {
