@@ -9,6 +9,8 @@ public class PlayerLife : MonoBehaviour
     private Rigidbody2D rigidbody;
     [SerializeField] private AudioSource deathSound;
 
+    private static int attemptCount = 1;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -31,6 +33,12 @@ public class PlayerLife : MonoBehaviour
 
     private void RestartLevel()
     {
+        attemptCount++;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    static public int GetAttemptCount()
+    {
+        return attemptCount;
     }
 }
