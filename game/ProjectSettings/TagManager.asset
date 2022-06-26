@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Trap
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -46,6 +47,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Terrain
+  - name: Ground
     uniqueID: 1380837661
     locked: 0

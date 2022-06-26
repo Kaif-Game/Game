@@ -14,9 +14,10 @@ public class PlayerMovement : MonoBehaviour
     //private float angle = 0;
     //[SerializeField] private float roundDiff = 15f; 
 
+    bool isSpacePressed = false; 
 
     [SerializeField] private LayerMask jumpableGround;
-    private bool isOnGround = true;
+    private bool isOnGround = false;
 
     void Start()
     {
@@ -29,9 +30,16 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
 
         //jump only if player on ground
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        if ((Input.GetKeyDown(KeyCode.Space) || isSpacePressed) && isOnGround)
         {
+            isSpacePressed = true;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
+        }
+
+        //for keeping space
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            isSpacePressed = false;
         }
 
         //rotation in air
@@ -52,6 +60,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnGround = true;
             rigidbody.velocity = Vector2.down;
+        }
+        if(collision.gameObject.CompareTag("Jumper"))
+        {
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce * 2);
         }
     }
 
