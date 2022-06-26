@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//ЕБАТЬ ЧТО Я ТУТ ДЕЛАЮ
-
 public class PlayerMovement : MonoBehaviour
 {
     private new Rigidbody2D rigidbody;
@@ -34,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isSpacePressed = true;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
+            transform.Rotate(0, 0, 90);
         }
 
         //for keeping space
