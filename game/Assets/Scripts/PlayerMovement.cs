@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isSpacePressed = true;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
+            transform.Rotate(0, 0, 90);
         }
 
         //for keeping space
