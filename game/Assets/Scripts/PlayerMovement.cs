@@ -10,15 +10,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private float speed;
 
-    [SerializeField] private float RotationInAir = 2f;
+    private float rotationInAir = 0;
+    [SerializeField] private float deltaAngle = 0f;
+    private float angle = 0;
 
-    private new BoxCollider2D collider;
+
     [SerializeField] private LayerMask jumpableGround;
+    private bool isOnGround = true;
 
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -26,22 +28,36 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
 
-
         //jump only if player on ground
-        bool isOnGround = IsOnGround();
-        if (Input.GetKeyDown("space") && isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            rigidbody.velocity = new Vector3(rigidbody.velocity.x, jumpForce);
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
         }
-        //rotation while floating
-        if (!isOnGround)
+
+        //rotation in air
+        //if (!isOnGround)
+        //{
+        //    Debug.Log(rotationInAir);
+        //    angle -= deltaAngle;
+        //    transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+        //}
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.CompareTag("Ground"))
         {
-           transform.Rotate(0, 0, transform.rotation.z - RotationInAir);
+            isOnGround = true;
         }
     }
 
-    bool IsOnGround()
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        return Physics2D.BoxCast(collider.bounds.center, collider.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = false;
+        }
     }
 }
