@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private float speed;
 
-    bool isSpacePressed = false; 
+    bool isSpacePressed = false;
+    //true if cube pass through portal
+    private static bool isPlane = false;
 
     [SerializeField] private LayerMask jumpableGround;
     private bool isOnGround = false;
@@ -24,11 +27,14 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
 
         //jump only if player on ground
-        if ((Input.GetKeyDown(KeyCode.Space) || isSpacePressed) && isOnGround)
+        if ((Input.GetKeyDown(KeyCode.Space) || isSpacePressed) && (isOnGround || isPlane))
         {
             isSpacePressed = true;
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
-            transform.Rotate(0, 0, 90);
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce / (1 + Convert.ToInt32(isPlane) * 1.1f));
+            if (!isPlane)
+            {
+                transform.Rotate(0, 0, 90);
+            } 
         }
 
         //for keeping space
@@ -58,5 +64,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnGround = false;
         }
+    }
+
+    static public void ChangePlaneCondion(bool condition)
+    {
+        isPlane = condition;
     }
 }
