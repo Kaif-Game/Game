@@ -34,7 +34,7 @@ public class PlayerLife : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name.Contains("Block"))
+        if (collision.name.Contains("Block") || collision.name.Contains("Platform"))
             Die();
     }
 
