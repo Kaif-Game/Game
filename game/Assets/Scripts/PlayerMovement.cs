@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     //true if cube pass through portal
     private static bool isPlane = false;
 
-    [SerializeField] private LayerMask jumpableGround;
     private bool isOnGround = false;
 
     void Start()
@@ -21,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
@@ -55,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Jumper"))
         {
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce * 2);
+            isOnGround = false; 
         }
     }
 
@@ -66,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    static public void ChangePlaneCondion(bool condition)
+    static public void ChangePlaneCondition(bool condition)
     {
         isPlane = condition;
     }
