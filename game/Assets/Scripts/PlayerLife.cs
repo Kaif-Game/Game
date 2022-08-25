@@ -24,6 +24,12 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name.Contains("Block"))
+            Die();
+    }
+
     private void Die()
     {
         deathSound.Play();
