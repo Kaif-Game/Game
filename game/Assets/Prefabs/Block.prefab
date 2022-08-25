@@ -48,11 +48,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.5966797, y: 0.3480599}
+  - {x: -0.6108494, y: 0.3510962}
   - {x: -0.6014252, y: -0.62893105}
   - {x: 0.62255096, y: -0.6164396}
-  - {x: 0.60733974, y: 0.35368383}
-  - {x: -0.61061764, y: 0.34837806}
+  - {x: 0.5997319, y: 0.57430845}
+  - {x: -0.60783195, y: 0.5728066}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -160,7 +160,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0069080293}
+  m_Offset: {x: 0, y: -0.00002321601}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -171,7 +171,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.22, y: 1.2061839}
+  m_Size: {x: 1.22, y: 1.2199535}
   m_EdgeRadius: 0
 --- !u!50 &3301816914620534747
 Rigidbody2D:
