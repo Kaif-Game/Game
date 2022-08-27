@@ -24,18 +24,13 @@ public class PlayerLife : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap"))
         {
             Die();
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.name.Contains("Block") || collision.name.Contains("Platform"))
-            Die();
     }
 
     private void Die()
