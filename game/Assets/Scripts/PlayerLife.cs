@@ -40,6 +40,11 @@ public class PlayerLife : MonoBehaviour
 
     private void Die()
     {
+        if(PlanePortal.isPlane)
+        {
+            Destroy(PlanePortal.myPlane);
+            PlanePortal.isPlane = false;
+        }
         deathSound.Play();
         PlayerMovement.ChangePlaneCondion(false);
         rigidbody.bodyType = RigidbodyType2D.Static;

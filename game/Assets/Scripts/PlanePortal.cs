@@ -6,8 +6,8 @@ using UnityEditor;
 public class PlanePortal : MonoBehaviour
 {
     [SerializeField] public GameObject plane;
-    static private GameObject myPlane = null;
-    private static bool isPlane = false;
+    static public GameObject myPlane = null;
+    static public bool isPlane = false;
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name  == "Player")
