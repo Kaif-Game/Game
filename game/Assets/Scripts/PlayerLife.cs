@@ -56,4 +56,8 @@ public class PlayerLife : MonoBehaviour
     {
         return attemptCount;
     }
+    static public void ResetAttemptCount()
+    {
+        attemptCount = 1;
+    }
 }

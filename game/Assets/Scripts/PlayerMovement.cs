@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private float speed;
 
+    private bool isRotationAppropriate = true;
     bool isSpacePressed = false;
     //true if cube pass through portal
     private static bool isPlane = false;
@@ -31,10 +32,11 @@ public class PlayerMovement : MonoBehaviour
         {
             isSpacePressed = true;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce / (1 + Convert.ToInt32(isPlane) * 1.1f));
-            if (!isPlane)
+            if (!isPlane && isRotationAppropriate)
             {
-                transform.Rotate(0, 0, 90);
-            } 
+                transform.Rotate(0, 0, -90);
+                isRotationAppropriate = false;
+            }
         }
 
         //for keeping space
@@ -51,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnGround = true;
             rigidbody.velocity = Vector2.down;
+            isRotationAppropriate = true;
         }
         if (collision.gameObject.CompareTag("Jumper"))
         {
@@ -63,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = false;
+            isRotationAppropriate = false;
         }
     }
 
