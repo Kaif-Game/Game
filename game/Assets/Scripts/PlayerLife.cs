@@ -24,7 +24,6 @@ public class PlayerLife : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap"))
@@ -35,13 +34,8 @@ public class PlayerLife : MonoBehaviour
 
     private void Die()
     {
-        if(PlanePortal.isPlane)
-        {
-            Destroy(PlanePortal.myPlane);
-            PlanePortal.isPlane = false;
-        }
         deathSound.Play();
-        PlayerMovement.ChangePlaneCondion(false);
+        PlayerMovement.ChangePlaneCondition(false);
         rigidbody.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("death");
     }

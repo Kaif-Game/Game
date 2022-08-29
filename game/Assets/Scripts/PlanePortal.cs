@@ -5,32 +5,33 @@ using UnityEditor;
 
 public class PlanePortal : MonoBehaviour
 {
-    [SerializeField] public GameObject plane;
-    static public GameObject myPlane = null;
-    static public bool isPlane = false;
+    [SerializeField] public GameObject planePrefab;
+
+    private GameObject plane;
+    //static private GameObject myPlane;
+    public static bool isPlane = false;
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name  == "Player")
+        if (collision.gameObject.name == "Player")
         {
             if (!isPlane)
             {
-                PlayerMovement.ChangePlaneCondion(true);
-                myPlane = PrefabUtility.LoadPrefabContents("Assets/Prefabs/Plane.prefab");
-                myPlane.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y - 0.2f, 0);
-                myPlane.transform.SetParent(collision.transform);
-                myPlane.transform.rotation = Quaternion.Euler(0, 0, 0); ;
+                PlayerMovement.ChangePlaneCondition(true);
+                plane = Instantiate(planePrefab); 
+                plane.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y - 0.2f, 0);
+                plane.transform.SetParent(collision.transform);
+                plane.transform.rotation = Quaternion.Euler(0, 0, 0);
                 isPlane = true;
             }
             else
             {
-                Destroy(myPlane);
+                Destroy(plane);
                 isPlane = false;
-                PlayerMovement.ChangePlaneCondion(false);
+                PlayerMovement.ChangePlaneCondition(false);
             }
-            
+
         }
     }
-
-
-
 }
+
+

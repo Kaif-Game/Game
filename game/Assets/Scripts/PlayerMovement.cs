@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    static public void ChangePlaneCondion(bool condition)
+    static public void ChangePlaneCondition(bool condition)
     {
         isPlane = condition;
     }
