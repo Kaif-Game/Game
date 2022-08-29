@@ -9,6 +9,7 @@ public class Ending : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
+            PlayerLife.ResetAttemptCount();
             SceneManager.LoadScene("Menu");
         }
     }

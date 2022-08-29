@@ -24,6 +24,7 @@ public class PlayerLife : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap"))
@@ -49,5 +50,9 @@ public class PlayerLife : MonoBehaviour
     static public int GetAttemptCount()
     {
         return attemptCount;
+    }
+    static public void ResetAttemptCount()
+    {
+        attemptCount = 1;
     }
 }
