@@ -5,19 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
-    public static int skin = 0;
-    public Sprite[] sprites;
-
     private Animator animator;
     private Rigidbody2D rigidbody;
     [SerializeField] private AudioSource deathSound;
 
     private static int attemptCount = 1;
-
-    private void Awake()
-    {
-        GetComponent<SpriteRenderer>().sprite = sprites[skin];
-    }
 
     private void Start()
     {
