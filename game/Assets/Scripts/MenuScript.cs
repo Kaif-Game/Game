@@ -7,6 +7,7 @@ public class MenuScript : MonoBehaviour
 {
     public void StartGame()
     {
+        PlayerLife.ResetAttemptCount();
         SceneManager.LoadScene("Level1");
     }
     public void Quit()

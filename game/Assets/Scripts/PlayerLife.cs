@@ -41,18 +41,19 @@ public class PlayerLife : MonoBehaviour
         animator.SetTrigger("death");
     }
 
-    private void RestartLevel()
-    {
-        attemptCount++;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
     static public int GetAttemptCount()
     {
         return attemptCount;
     }
+
     static public void ResetAttemptCount()
     {
         attemptCount = 1;
+    }
+
+    private void RestartLevel()
+    {
+        attemptCount++;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
