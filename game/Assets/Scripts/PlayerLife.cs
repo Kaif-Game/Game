@@ -29,6 +29,7 @@ public class PlayerLife : MonoBehaviour
     {
         deathSound.Play();
         PlayerMovement.ChangePlaneCondition(false);
+        PlanePortal.isPlane = false;
         rigidbody.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("death");
     }
