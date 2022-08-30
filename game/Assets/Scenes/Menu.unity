@@ -1179,6 +1179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b9eb53cd95c0354ca513357f553b914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   levels: []
 --- !u!1 &1956581814
 GameObject:
@@ -1264,3 +1265,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+  levels:
+  - {fileID: 0}
+>>>>>>> 794786779aac73e80648d3f3fb18a4844e47a260
