@@ -5,7 +5,8 @@ using UnityEditor;
 
 public class PlanePortal : MonoBehaviour
 {
-    [SerializeField] public GameObject planePrefab;
+    [SerializeField] private GameObject planePrefab;
+    [SerializeField] private GameObject player;
 
     private GameObject plane;
     //static private GameObject myPlane;
@@ -18,7 +19,8 @@ public class PlanePortal : MonoBehaviour
             {
                 PlayerMovement.ChangePlaneCondition(true);
                 plane = Instantiate(planePrefab); 
-                plane.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y - 0.2f, 0);
+                plane.transform.position = new Vector2(collision.transform.position.x, collision.transform.position.y - 0.2f);
+                player.transform.rotation = Quaternion.identity;
                 plane.transform.SetParent(collision.transform);
                 plane.transform.rotation = Quaternion.Euler(0, 0, 0);
                 isPlane = true;

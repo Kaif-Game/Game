@@ -13473,6 +13473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planePrefab: {fileID: 711735713087969674, guid: b801113aecd3e8c46a936394c172534c,
     type: 3}
+  player: {fileID: 1066399596}
 --- !u!4 &1175285295
 Transform:
   m_ObjectHideFlags: 0
