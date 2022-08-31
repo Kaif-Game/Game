@@ -49,6 +49,7 @@ public class PauseManager : MonoBehaviour
     public void ToMenu()
     {
         isPaused = false;
+        Time.timeScale = 1f;
         PlayerLife.ResetAttemptCount();
         SceneManager.LoadScene("Menu");
     }
