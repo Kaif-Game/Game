@@ -12463,7 +12463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundtrack: {fileID: 1427829680}
   panel: {fileID: 642421123}
-  hasSound: 1
   soundButton: {fileID: 2009309881}
   soundSprite: {fileID: 21300000, guid: ff5626da97056934ab95daea561c248a, type: 3}
   not_soundSprite: {fileID: 21300000, guid: d6f14993118422a4489749d234b4174e, type: 3}

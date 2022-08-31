@@ -21,13 +21,14 @@ public class PlanePortal : MonoBehaviour
                 //create plane object
                 plane = Instantiate(planePrefab);
 
-                //set plane position to player and bind their transform
-                plane.transform.position = new Vector2(collision.transform.position.x, collision.transform.position.y - 0.2f);
-                plane.transform.SetParent(collision.transform);
-
                 //set no rotation to plane and player
                 player.transform.rotation = Quaternion.Euler(0, 0, 0);
                 plane.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+                //set plane position to player and bind their transform
+                plane.transform.position = new Vector2(collision.transform.position.x - 0.05f, collision.transform.position.y - 0.35f);
+                plane.transform.SetParent(collision.transform);
+
                 isPlane = true;
             }
             else

@@ -10,8 +10,6 @@ public class PauseManager : MonoBehaviour
     [SerializeField] GameObject panel;
     private bool isPaused = false;
 
-    [SerializeField] 
-
     private bool hasSound = true;
     [SerializeField] Button soundButton;
     //sprites of button
