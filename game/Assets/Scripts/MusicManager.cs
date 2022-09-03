@@ -5,7 +5,6 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     [SerializeField] private AudioSource bg_music;
-    [SerializeField] private float volume = 1f;
 
     void Start()
     {

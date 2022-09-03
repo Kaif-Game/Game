@@ -2,18 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
+
 
 public class PlayerLife : MonoBehaviour
 {
-    private Animator animator;
+    //private Animator animator;
     private Rigidbody2D rigidbody;
-    [SerializeField] private AudioSource deathSound;
-
+    private SpriteRenderer spriteRenderer;
     private static int attemptCount = 1;
+
+    [SerializeField] private AudioSource deathSound;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        //set sprite to player
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = PlayerLook.GetCurrentSprite();
+        if(spriteRenderer.sprite == null)
+        {
+            Debug.Log("sprite is NULL");
+        }
+
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -31,7 +41,8 @@ public class PlayerLife : MonoBehaviour
         PlayerMovement.SetPlaneCondition(false);
         PlanePortal.isPlane = false;
         rigidbody.bodyType = RigidbodyType2D.Static;
-        animator.SetTrigger("death");
+        Invoke("RestartLevel", 1f);
+        //animator.SetTrigger("death");
     }
 
     static public int GetAttemptCount()

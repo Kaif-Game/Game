@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class SkinManager : MonoBehaviour
 {
-     private Sprite currentSprite;
-    void Start()
+    public void ChangeCurrentSkin(int num)
     {
-        
+        PlayerLook.SetSkinSprite(num);
     }
-
-    public void ChangeCurrentSkin()
-    {
-
-    }
-    
 }

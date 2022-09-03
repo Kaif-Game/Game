@@ -9,9 +9,9 @@ public class ChangeScene : MonoBehaviour
 {
     public Button[] levels;
 
-    public void Select(int NumberInBuild)
+    public void Select(string name)
     {
-        SceneManager.LoadScene(NumberInBuild);
+        SceneManager.LoadScene(name);
     }
 
     public void Quit()
