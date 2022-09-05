@@ -13,7 +13,6 @@ public class SkinManager : MonoBehaviour
 
     public void ChangeCurrentColor(string color)
     {
-        Debug.Log(color);
         PlayerLook.SetSkinColor(color);
     }
 }

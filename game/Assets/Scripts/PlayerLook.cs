@@ -112,7 +112,6 @@ public class PlayerLook : MonoBehaviour
                 //clear and rewrite log file 
                 fstream.Write(Encoding.ASCII.GetBytes(templateForSkinLogFile));
             }
-
         }
         fstream.Close();
         switch (colorName)
