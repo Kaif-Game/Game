@@ -7,30 +7,27 @@ using System.IO;
 
 public class PlayerLife : MonoBehaviour
 {
-    //private Animator animator;
     private Rigidbody2D rigidbody;
     private SpriteRenderer spriteRenderer;
     private static int attemptCount = 1;
 
     [SerializeField] private AudioSource deathSound;
+    [SerializeField] private AudioSource backgroundMusic;
+    [SerializeField] private Sprite[] appearenceSprites;
 
     private void Start()
-    {
-        //set sprite to player
+    { 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = PlayerLook.GetCurrentSprite();
-        if(spriteRenderer.sprite == null)
-        {
-            Debug.Log("sprite is NULL");
-        }
-
         rigidbody = GetComponent<Rigidbody2D>();
+        backgroundMusic.Play();
+        StartCoroutine(AppearenceAnimation());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap"))
         {
+            backgroundMusic.Stop();
             Die();
         }
     }
@@ -38,11 +35,11 @@ public class PlayerLife : MonoBehaviour
     private void Die()
     {
         deathSound.Play();
-        PlayerMovement.SetPlaneCondition(false);
+        PlayerMovement.SetPlaneCondition(false); //set condition is not plane
         PlanePortal.isPlane = false;
-        rigidbody.bodyType = RigidbodyType2D.Static;
+        rigidbody.bodyType = RigidbodyType2D.Static; //stop cube moving
+        StartCoroutine(DeathAnimation());
         Invoke("RestartLevel", 1f);
-        //animator.SetTrigger("death");
     }
 
     static public int GetAttemptCount()
@@ -59,5 +56,28 @@ public class PlayerLife : MonoBehaviour
     {
         attemptCount++;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private IEnumerator AppearenceAnimation()
+    {
+        for(int i = 0; i < appearenceSprites.Length; i++)
+        {
+            spriteRenderer.sprite = appearenceSprites[i];
+            yield return new WaitForSeconds(.1f);
+        }
+        spriteRenderer.sprite = PlayerLook.sprite;
+        spriteRenderer.color = PlayerLook.color;
+    }
+
+    private IEnumerator DeathAnimation()
+    {
+        //same as appearence but in reverse order
+        spriteRenderer.color = Color.white;
+        for (int i = appearenceSprites.Length - 1; i >= 0; i--)
+        {
+            spriteRenderer.sprite = appearenceSprites[i];
+            yield return new WaitForSeconds(.1f);
+        }
+        spriteRenderer.sprite = null;
     }
 }

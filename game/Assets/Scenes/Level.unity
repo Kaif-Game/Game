@@ -10724,7 +10724,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -10750,7 +10750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.94, y: 1, z: -10}
+  m_LocalPosition: {x: -17.34, y: -0.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12800,7 +12800,6 @@ GameObject:
   - component: {fileID: 1066399600}
   - component: {fileID: 1066399601}
   - component: {fileID: 1066399603}
-  - component: {fileID: 1066399602}
   - component: {fileID: 1066399604}
   - component: {fileID: 1066399606}
   m_Layer: 0
@@ -12917,7 +12916,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.24, y: 1.24}
     newSize: {x: 3.1, y: 3.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -12926,26 +12925,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.92425585, y: 0.9242558}
   m_EdgeRadius: 0
---- !u!95 &1066399602
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066399596}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e21757d4b39ce0943b7b50869617517f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1066399603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12959,6 +12938,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathSound: {fileID: 1066399604}
+  backgroundMusic: {fileID: 1427829680}
+  appearenceSprites:
+  - {fileID: 21300000, guid: 7e04af9f21a523f4fb9cb3dc5fac1ba4, type: 3}
+  - {fileID: 21300000, guid: 035f80f34251b7244868b863e31dc121, type: 3}
+  - {fileID: 21300000, guid: 8d8abc846933426488be774ace47ccfe, type: 3}
+  - {fileID: 21300000, guid: de1b2bd9c5f7f8c4c9a1d9651525726e, type: 3}
+  - {fileID: 21300000, guid: 4d54a2e718f922b44ab8fee844861d3b, type: 3}
 --- !u!82 &1066399604
 AudioSource:
   m_ObjectHideFlags: 0

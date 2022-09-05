@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);

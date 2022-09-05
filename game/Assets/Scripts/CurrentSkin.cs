@@ -9,10 +9,12 @@ public class CurrentSkin : MonoBehaviour
     {
         currSprite = GetComponent<SpriteRenderer>();
         currSprite.sprite = PlayerLook.GetCurrentSprite();
+        currSprite.color = PlayerLook.GetCurrentColor();
     }
 
     private void Update()
     {
         currSprite.sprite = PlayerLook.sprite;
+        currSprite.color =  PlayerLook.color;
     }
 }
