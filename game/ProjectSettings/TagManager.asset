@@ -8,6 +8,7 @@ TagManager:
   - Trap
   - Platform
   - Jumper
+  - BGMusic
   layers:
   - Default
   - TransparentFX
