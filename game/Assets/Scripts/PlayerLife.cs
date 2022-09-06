@@ -27,7 +27,6 @@ public class PlayerLife : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Trap"))
         {
-            backgroundMusic.Stop();
             Die();
         }
     }
@@ -42,6 +41,7 @@ public class PlayerLife : MonoBehaviour
 
     private void Die()
     {
+        backgroundMusic.Stop();
         deathSound.Play();
         PlayerMovement.SetPlaneCondition(false); //set condition is not plane
         PlanePortal.isPlane = false;
@@ -73,8 +73,8 @@ public class PlayerLife : MonoBehaviour
             spriteRenderer.sprite = appearenceSprites[i];
             yield return new WaitForSeconds(.1f);
         }
-        spriteRenderer.sprite = PlayerLook.sprite;
-        spriteRenderer.color = PlayerLook.color;
+        spriteRenderer.sprite = PlayerLook.GetCurrentSprite();
+        spriteRenderer.color = PlayerLook.GetCurrentColor();
     }
 
     private IEnumerator DeathAnimation()

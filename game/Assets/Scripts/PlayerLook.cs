@@ -13,18 +13,15 @@ public class PlayerLook : MonoBehaviour
     public static Color color = Color.white;
     private static string colorName = "red**";
 
-    const string templateForSkinLogFile = "icon_1 red**";
+    const string templateForSkinLogFile = "icon_1|red**";
 
     public static void SetSkinSprite(int num)
     {
+        //log skin to file
         spriteName = $"icon_{num}";
         sprite = Resources.Load<Sprite>(spriteName);
-        //log skin to file
-        FileStream fstream = File.OpenWrite("skin_log.txt");
-        if (fstream != null)
-        {
-            fstream.Write(Encoding.ASCII.GetBytes(spriteName + ' ' + colorName));
-        }
+        var fstream = File.Open("skin_log.txt", FileMode.OpenOrCreate);
+        fstream.Write(Encoding.ASCII.GetBytes(spriteName + '|' + colorName));
         fstream.Close();
     }
 
@@ -32,54 +29,26 @@ public class PlayerLook : MonoBehaviour
     {
         //log color to file
         colorName = color_name;
-        switch (color_name)
-        {
-            case "red**": color = Color.red; break;
-            case "blue*": color = Color.blue; break;
-            case "green": color = Color.green; break;
-            case "cyan*": color = Color.cyan; break;
-            case "yellw": color = Color.yellow; break;
-            case "pink*": color = Color.magenta; break;
-            default: color = Color.white; break;
-        }
-        FileStream fstream = File.OpenWrite("skin_log.txt");
-        if (fstream != null)
-        {
-            fstream.Write(Encoding.ASCII.GetBytes(spriteName + ' ' + colorName));
-        }
+        color = GetColor(color_name);
+        var fstream = File.Open("skin_log.txt", FileMode.OpenOrCreate);
+        fstream.Write(Encoding.ASCII.GetBytes(spriteName + '|' + colorName));
         fstream.Close();
     }
 
     public static Sprite GetCurrentSprite()
     {
-        FileStream fstream = null;
-        if (File.Exists("skin_log.txt"))
+        var fstream = File.Open("skin_log.txt", FileMode.OpenOrCreate);
+        byte[] buffer = new byte[12];
+        fstream.Read(buffer, 0, buffer.Length);
+        var skin_info = Encoding.ASCII.GetString(buffer).Split('|');
+        try
         {
-            fstream = File.Open("skin_log.txt", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            sprite = Resources.Load<Sprite>(skin_info[0]);
+            if (sprite == null) throw new Exception();
         }
-        else
+        catch (Exception)
         {
-            fstream = File.Create("skin_log.txt");
-            byte[] data = new byte[20];
-            data = Encoding.ASCII.GetBytes(templateForSkinLogFile);
-            fstream.Write(data);
-        }
-
-        if (fstream != null)
-        {
-            byte[] buffer = new byte[20];
-            fstream.Read(buffer, 0, buffer.Length);
-            var info = Encoding.ASCII.GetString(buffer);
-            try
-            {
-                sprite = Resources.Load<Sprite>(info.Split(' ')[0]);
-                if (sprite == null) throw new NullReferenceException();
-            }
-            catch (Exception)
-            {
-                //rewrite log file 
-                fstream.Write(Encoding.ASCII.GetBytes(templateForSkinLogFile));
-            }
+            RewriteLogFile(fstream);
         }
         fstream.Close();
         return sprite;
@@ -87,43 +56,47 @@ public class PlayerLook : MonoBehaviour
 
     public static Color GetCurrentColor()
     {
-        FileStream fstream = null;
-        if (File.Exists("skin_log.txt"))
+        var fstream = File.Open("skin_log.txt", FileMode.OpenOrCreate);
+        byte[] buffer = new byte[12];
+        fstream.Read(buffer, 0, buffer.Length);
+        try
         {
-            fstream = File.Open("skin_log.txt", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-        }
-        else
-        {
-            fstream = File.Create("skin_log.txt");
-            byte[] data = new byte[20];
-            data = Encoding.ASCII.GetBytes(templateForSkinLogFile);
-            fstream.Write(data);
-        }
-
-        if (fstream != null)
-        {
-            byte[] buffer = new byte[20];
-            fstream.Read(buffer, 0, buffer.Length);
-            try
+            var color = Encoding.ASCII.GetString(buffer).Split('|')[1];
+            if (GetColor(color) == Color.white)
             {
-                colorName = Encoding.ASCII.GetString(buffer).Split()[1];
-            } catch(Exception)
-            {
-                //clear and rewrite log file 
-                fstream.Write(Encoding.ASCII.GetBytes(templateForSkinLogFile));
+                throw new Exception();
             }
-
+        }
+        catch (Exception)
+        {
+            RewriteLogFile(fstream);
         }
         fstream.Close();
-        switch (colorName)
+        return color = GetColor(colorName);
+    }
+
+    static Color GetColor(string color_name)
+    {
+        switch (color_name)
         {
-            case "red**": return color = Color.red;
-            case "blue*": return color = Color.blue;
-            case "green": return color = Color.green;
-            case "cyan*": return color = Color.cyan;
-            case "yellw": return color = Color.yellow;
-            case "pink*": return color = Color.magenta;
-            default: return color = Color.white;
+            case "red**": return Color.red;
+            case "blue*": return Color.blue;
+            case "green": return Color.green;
+            case "cyan*": return Color.cyan;
+            case "yellw": return Color.yellow;
+            case "pink*": return Color.magenta;
+            default: return Color.white;
         }
+    }
+
+    static void RewriteLogFile(FileStream fstream)
+    {
+        var skin_info = templateForSkinLogFile.Split('|');
+        sprite = Resources.Load<Sprite>(skin_info[0]);
+        spriteName = skin_info[0];
+        color = GetColor(skin_info[1]);
+        colorName = skin_info[1];
+        fstream.Position = 0;
+        fstream.Write(Encoding.ASCII.GetBytes(templateForSkinLogFile));
     }
 }
