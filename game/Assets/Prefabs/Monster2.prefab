@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4665010081752652214}
   - component: {fileID: 4665010081752652201}
   - component: {fileID: 4665010081752652203}
-  - component: {fileID: 4665010081752652215}
   - component: {fileID: 6385384763840208700}
+  - component: {fileID: 294613738152756036}
   m_Layer: 0
   m_Name: Monster2
   m_TagString: Trap
@@ -113,20 +113,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9091797, y: 1.0779545}
   m_EdgeRadius: 0
---- !u!114 &4665010081752652215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4665010081752652202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a228734fab10446b833ba4e097634a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPoint: 521.48
-  endPoint: 535
 --- !u!50 &6385384763840208700
 Rigidbody2D:
   serializedVersion: 4
@@ -148,3 +134,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &294613738152756036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4665010081752652202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b647acded6540f46b490342eaa83663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  startPoint: 0
+  endPoint: 0
