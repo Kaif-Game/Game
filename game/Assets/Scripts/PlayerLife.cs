@@ -73,8 +73,8 @@ public class PlayerLife : MonoBehaviour
             spriteRenderer.sprite = appearenceSprites[i];
             yield return new WaitForSeconds(.1f);
         }
-        spriteRenderer.sprite = PlayerLook.sprite;
-        spriteRenderer.color = PlayerLook.color;
+        spriteRenderer.sprite = PlayerLook.GetCurrentSprite();
+        spriteRenderer.color = PlayerLook.GetCurrentColor();
     }
 
     private IEnumerator DeathAnimation()
