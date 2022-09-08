@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
         //jump only if player on ground
         if (isSpacePressed && (isOnGround || isPlane))
         {
-            isSpacePressed = true;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce / (1 + Convert.ToInt32(isPlane) * 1.1f));
             if (!isPlane && isRotationAppropriate)
             {
