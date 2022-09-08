@@ -26,8 +26,13 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
 
+        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            isSpacePressed = true;
+        }
         //jump only if player on ground
-        if ((Input.GetKeyDown(KeyCode.Space) || isSpacePressed) && (isOnGround || isPlane))
+        if (isSpacePressed && (isOnGround || isPlane))
         {
             isSpacePressed = true;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce / (1 + Convert.ToInt32(isPlane) * 1.1f));
